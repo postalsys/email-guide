@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Email Sending Guide",
-  tagline: "Sending SaaS emails? It's not rocket science… until now.",
+  tagline: "Sending SaaS emails? It's not rocket science… until now",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
