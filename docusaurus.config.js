@@ -66,7 +66,7 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "My Site",
+        title: "Sending Guide",
         logo: {
           alt: "My Site Logo",
           src: "img/logo.svg",
@@ -129,12 +129,22 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Postal Systems OÜ. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      announcementBar: {
+        id: "support_us",
+        content: 'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
+        backgroundColor: "#fafbfc",
+        textColor: "#091E42",
+        isCloseable: false,
+      },
+      defaultMode: "light",
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
     }),
 };
 
