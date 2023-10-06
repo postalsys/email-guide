@@ -65,9 +65,9 @@ const config = {
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
+            sidebarId: "guideSidebar",
             position: "left",
-            label: "Tutorial",
+            label: "Guide",
           },
           {
             href: "https://github.com/postalsys/email-guide",
@@ -83,8 +83,8 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "Marketing",
+                to: "/docs/marketing",
               },
             ],
           },

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 import Transactional1Svg from '/img/transactional1.svg';
 
-# Introduction
+# Transactional Emails
 
 Transactional emails are automated messages sent to individuals based on specific actions or events they've triggered. Unlike marketing emails, which are promotional in nature and sent to a list of subscribers, transactional emails are tailored to an individual's interaction with a platform or service. They are often critical for the user experience and play a pivotal role in maintaining user trust and engagement.
 

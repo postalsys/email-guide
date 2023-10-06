@@ -4,7 +4,7 @@ sidebar_position: 1
 
 import Marketing1Svg from '/img/marketing1.svg';
 
-# Introduction
+# Marketing Emails
 
 Marketing emails are strategically crafted messages designed to promote a product, service, or brand to a specific audience. Unlike transactional emails, which are reactive and sent in response to user actions, marketing emails are proactive, aiming to engage, inform, or persuade recipients. They play a crucial role in nurturing leads, building brand loyalty, and driving sales.
 

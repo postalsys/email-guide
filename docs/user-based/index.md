@@ -4,7 +4,7 @@ sidebar_position: 1
 
 import UserBased1Svg from '/img/userbased1.svg';
 
-# Introduction
+# Sending on Behalf of Users
 
 Emails sent on behalf of users represent a unique category of communication, where a system or service sends out messages as if they're originating directly from an individual user. Unlike transactional or marketing emails, which are typically from businesses to users, these emails act as a proxy, allowing for automated yet personalized interactions between users or between a user and their contacts.
 
