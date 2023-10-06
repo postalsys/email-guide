@@ -43,15 +43,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/postalsys/email-guide/tree/main/packages/create-docusaurus/templates/shared/",
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/postalsys/email-guide/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -78,7 +69,6 @@ const config = {
             position: "left",
             label: "Tutorial",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/postalsys/email-guide",
             label: "GitHub",
@@ -119,28 +109,17 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
                 label: "GitHub",
                 href: "https://github.com/postalsys/email-guide",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Postal Systems OÜ. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Postal Systems OÜ.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      announcementBar: {
-        id: "support_us",
-        content: 'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
-        isCloseable: false,
       },
       defaultMode: "light",
       disableSwitch: false,
