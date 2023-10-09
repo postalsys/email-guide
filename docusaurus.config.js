@@ -58,6 +58,23 @@ const config = {
     },
   ],
 
+  plugins: [
+    [
+      "@grnet/docusaurus-terminology",
+      {
+        termsDir: "./docs/terms",
+        docsDir: "./docs/",
+        glossaryFilepath: "./docs/glossary.md",
+      },
+    ],
+  ],
+
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ["@docusaurus/theme-mermaid"],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -132,10 +149,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ["php"],
       },
       defaultMode: "light",
       disableSwitch: false,
       respectPrefersColorScheme: false,
+
+      mermaid: {
+        theme: { light: "neutral", dark: "forest" },
+      },
     }),
 };
 
