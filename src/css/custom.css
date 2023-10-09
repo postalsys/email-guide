@@ -29,6 +29,12 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.custom-image svg {
+.custom-image svg,
+.custom-image img {
   max-height: 12rem;
+}
+
+.avatar img {
+  border-radius: 25%;
+  margin: 0 auto;
 }

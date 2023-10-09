@@ -1,8 +1,8 @@
 {
   "label": "Transactional Emails",
-  "position": 1,
+  "position": 11,
   "link": {
     "type": "generated-index",
-    "description": "5 minutes to learn the most important Docusaurus concepts."
+    "description": "Transactional emails are automated messages sent to individuals based on specific actions or events they've triggered."
   }
 }

@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Email Sending Guide",
-  tagline: "Sending SaaS emails? It's not rocket science… until now.",
+  tagline: "Email sending for SaaS builders? It's not rocket science.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -51,13 +51,20 @@ const config = {
     ],
   ],
 
+  scripts: [
+    {
+      src: "https://plausible.srv.dev/js/script.js",
+      defer: true,
+    },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "Sending Guide",
+        title: "Email Sending Guide for SaaS Builders",
         logo: {
           alt: "My Site Logo",
           src: "img/logo.svg",
@@ -68,6 +75,11 @@ const config = {
             sidebarId: "guideSidebar",
             position: "left",
             label: "Guide",
+          },
+          {
+            href: "/docs/about",
+            position: "left",
+            label: "About",
           },
           {
             href: "https://github.com/postalsys/email-guide",

@@ -1,8 +1,8 @@
 {
   "label": "Sending on Behalf of Users",
-  "position": 3,
+  "position": 13,
   "link": {
     "type": "generated-index",
-    "description": "5 minutes to learn the most important Docusaurus concepts."
+    "description": "Emails sent on behalf of users represent a unique category of communication, where a system or service sends out messages as if they're originating directly from an individual user."
   }
 }

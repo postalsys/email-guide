@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Example
+# Example Sending Flow
 
 This flowchart displays the process of a user sending a support request email to a user of a SaaS service. Upon the SaaS service detecting the email, it utilizes an LLM model to analyze its content and subsequently formulates a response. The reply is then sent on behalf of the SaaS service user, ensuring the end recipient perceives the response as coming directly from the user, not the SaaS platform itself.
 
