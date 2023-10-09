@@ -38,21 +38,16 @@ Finally, the `sendmail` executable adds the email to a sending queue. The system
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant SaaS
-    participant Database
-    participant EmailService
+    participant PHP App
+    participant PHP
+    participant sendmail/Postfix
+    participant MTA Process
+    participant MX Server
 
-    User->>SaaS: Visit Signup Page
-    User->>SaaS: Enter Details & Click "Sign Up"
-    SaaS->>Database: Store User Details
-    Database-->>SaaS: Confirm Details Stored
-    SaaS->>EmailService: Trigger Welcome Email
-    EmailService-->>User: Send Welcome Email
-    User->>SaaS: Click on Email to Verify/Activate
-    SaaS->>Database: Update Account Status
-    Database-->>SaaS: Confirm Account Activated
-    SaaS-->>User: Account Activated Notification
+    PHP App->>PHP: Invokes mail() function
+    PHP->>sendmail/Postfix: Pipes RFC822 formatted email
+    sendmail/Postfix->>MTA Process: Adds email to sending queue
+    MTA Process->>MX Server: Loads email from queue and delivers
 ```
 
 ### Understanding the Limitations of the `mail()` Function

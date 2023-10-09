@@ -156,7 +156,7 @@ const config = {
       respectPrefersColorScheme: false,
 
       mermaid: {
-        theme: { light: "neutral", dark: "forest" },
+        theme: { light: "default", dark: "dark" },
       },
     }),
 };
