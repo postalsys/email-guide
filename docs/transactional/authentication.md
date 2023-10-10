@@ -83,10 +83,6 @@ When you retrieve a DKIM key from the DNS, the result provides specific properti
 - These additional signatures allow email servers to verify if an email originated from their infrastructure. By validating their signature in the email headers, they can confirm the email's source.
 - Some third-party services offer analytics and insights on emails based on these signatures. They provide valuable data to the signature owners about the processed emails, helping them monitor and optimize their email delivery.
 
-Absolutely, let's provide a concise explanation of DMARC:
-
----
-
 ## Domain-based Message Authentication, Reporting and Conformance (DMARC)
 
 DMARC is a protocol that builds upon SPF and DKIM to provide a clear set of instructions for email receivers on how to handle emails that don't pass authentication checks. It specifically focuses on the domain name in the "From" header of the email.
