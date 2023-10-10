@@ -82,7 +82,7 @@ transporter.sendMail({
 
 </Tabs>
 
-**Key Considerations**
+## Key Considerations
 
 - **Reusing SMTP Connection**: One might wonder if it's beneficial to reuse the SMTP connection to send multiple emails over the same TLS connection. While it's technically feasible, it introduces unnecessary complexity without significant advantages.
 
