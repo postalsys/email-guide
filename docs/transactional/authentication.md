@@ -44,13 +44,13 @@ This indicates:
 
 DKIM is a protocol that enables email recipients to verify the authenticity of email signatures.
 
-When an email server is set up with DKIM:
+When an email server is set up with DKIM and it sends an email:
 
-1. It generates a signature using DKIM-specific algorithms.
+1. The server generates a signature using DKIM-specific algorithms for the email.
 2. This signature is then added to the email header before the email is sent.
 3. Upon receiving the email, the recipient checks for the presence of this signature.
-4. The recipient verifies if the domain in the signature matches the "From" address in the email header.
-5. The signature is then validated using the public key retrieved from the sending domain's DNS server.
+4. The signature is then validated using the public key retrieved from the sending domain's DNS server.
+5. The recipient verifies if the domain in the signature is aligned with the "From" address in the email header.
 
 By following this process, DKIM ensures that the email has not been tampered with during transit and confirms the legitimacy of the sender.
 
