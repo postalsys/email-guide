@@ -74,6 +74,12 @@ Given the complexities associated with the direct use of the `mail()` function, 
 
 One of the popular libraries that emerged to address the challenges of the `mail()` function is [PHPMailer](https://github.com/PHPMailer/PHPMailer). Below is an example of how an early version of PHPMailer was used. This snippet achieves the same goal as the PHP code mentioned earlier on this page. However, PHPMailer offers a more structured and less error-prone approach. It ensures correct encodings and even facilitates adding attachments to emails.
 
+:::caution
+
+The code provided below showcases an early version of PHPMailer, intended solely to highlight the transition from the basic `mail()` function to a more sophisticated client library. For contemporary email sending practices with PHPMailer, this example is outdated. Please refrain from using it as a reference for current implementations.
+
+:::
+
 ```php
 <?php
 $mail = new PHPMailer();
@@ -87,5 +93,3 @@ $mail->AddAddress("recipient@example.com", "Recipient Name");
 $mail->AddAttachment("images/phpmailer.gif");
 $mail->Send();
 ```
-
-Despite its user-friendly nature, one might wonder if developers could actually utilize PHPMailer without constantly referring to its documentation every time they needed to send an email programmatically.
