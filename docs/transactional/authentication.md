@@ -13,6 +13,12 @@ Email authentication doesn't refer to using passwords or credentials to send an 
 
 :::
 
+:::caution
+
+Regardless of whether you're using SMTP or HTTP API to dispatch emails to your email service provider, it's imperative to have the correct email authentication in place. This authentication isn't primarily about the traffic between the client (your application or system) and the MTA (Mail Transfer Agent, which is the email service provider's SMTP server). Instead, the critical authentication check occurs between the MTA and the MX (Mail Exchange server, which is responsible for receiving emails).
+
+:::
+
 ## Sender Policy Framework (SPF)
 
 SPF is a protocol that specifies which IP addresses are permitted to send emails for your domain. It's implemented using a DNS TXT record, identifiable by the `v=spf1` prefix.
