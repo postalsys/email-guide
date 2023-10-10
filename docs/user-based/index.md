@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
 import UserBased1Svg from '/img/userbased1.svg';

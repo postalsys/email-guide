@@ -3,9 +3,9 @@ sidebar_position: 3
 sidebar_label: A Brief History
 ---
 
-# A Brief Look at Email Sending History
+# A Brief History
 
-In earlier times, sending a transactional email was straightforward. All you needed was a simple [`mail()`](https://www.php.net/manual/en/function.mail.php) function call from a PHP script, and voila, your email was dispatched. This function was straightforward, requiring just three inputs: the recipient's address, the subject, and the email content.
+In earlier times, sending a transactional email was straightforward. All you needed was a simple [`mail()`](https://www.php.net/manual/en/function.mail.php) function call from a PHP script, and voila, your email was dispatched. This function is straightforward, requiring just three inputs: the recipient's address, the subject, and the email content.
 
 ```php
 <?php
@@ -16,11 +16,11 @@ mail(
 );
 ```
 
-However, fast forward a decade, and this straightforward approach isn't as effective. While the `mail()` function still exists and operates as it always did, its emails often end up in the spam folder or aren't accepted at all. So, what's changed?
+However, fast forward a decade or two, and this simple approach isn't as effective. While the `mail()` function still exists and operates as it always did, its emails often end up in the spam folder or aren't accepted at all. So, what's changed?
 
 :::info
 
-Note: This article focuses on the PHP mail function. It's worth mentioning that even in the past, SaaS services utilized various languages. But the essence of email sending remained consistent, regardless of the language.
+This article mainly focuses on the PHP mail function. But the essence of email sending is consistent, regardless of the language.
 
 :::
 

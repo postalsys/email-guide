@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
 import Transactional1Svg from '/img/transactional1.svg';
