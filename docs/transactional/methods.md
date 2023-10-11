@@ -11,7 +11,7 @@ When integrating email sending into your SaaS platform, it's crucial to select t
 
 [SMTP](../terms/smtp) is a universal method where your application acts as an SMTP client. It connects to the provider's SMTP server, authenticates using credentials, and dispatches the email. Once sent, the SMTP server queues the message and attempts delivery to the recipient.
 
-**Advantages of SMTP:**
+### Advantages of SMTP:
 
 - **Universality:** SMTP's universal nature means you can write your code once. If you ever decide to switch email service providers, a simple configuration change is all that's needed—no code alterations required.
 - **Extensive Client Support:** Given its longstanding presence, SMTP is supported across all programming languages, with a plethora of libraries available for seamless integration.

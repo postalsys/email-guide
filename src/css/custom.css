@@ -39,6 +39,16 @@
   max-height: 26rem;
 }
 
+.custom-image-lg {
+  max-width: 80%;
+  display: block;
+  margin: 0 auto 3rem auto;
+}
+
+.custom-image-border {
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
 .avatar img {
   border-radius: 25%;
   margin: 0 auto;

@@ -23,7 +23,9 @@ Regardless of whether you're using SMTP or HTTP API to dispatch emails to your e
 
 ## Sender Policy Framework (SPF)
 
-SPF is a protocol that specifies which IP addresses are permitted to send emails for your domain. It's implemented using a DNS TXT record, identifiable by the `v=spf1` prefix.
+[SPF](../terms/spf) is a protocol that specifies which IP addresses are permitted to send emails for your domain.
+
+It's implemented using a DNS TXT record, identifiable by the `v=spf1` prefix.
 
 For instance, the SPF policy for the domain [emailengine.app](https://emailengine.app) is:
 
@@ -45,7 +47,7 @@ This indicates:
 ### Additional SPF considerations:
 
 - When using email service providers, SPF might not be directly applicable. This is because SPF checks the SMTP envelope, not the "From:" address in the email. Many ESPs send emails from their domains using VERP addresses to track bounces.
-- SPF works in conjunction with DKIM. If an email fails SPF validation, it can still be accepted if it has a valid DKIM signature.
+- SPF works in conjunction with [DKIM](../terms/dkim). If an email fails SPF validation, it can still be accepted if it has a valid DKIM signature.
 - Email forwarding can cause SPF checks to fail, so many mail hosts treat even strict SPF failures leniently. This makes SPF more valuable as a positive indicator than a negative one.
 
 :::info
@@ -70,7 +72,7 @@ This is why SPF might not be very relevant for SaaS services – SPF is checked 
 
 ## DomainKeys Identified Mail (DKIM)
 
-DKIM is a protocol that enables email recipients to verify the authenticity of email signatures.
+[DKIM](../terms/dkim) is a protocol that enables email recipients to verify the authenticity of email signatures.
 
 When an email server is set up with DKIM and it sends an email:
 
@@ -113,7 +115,7 @@ When you retrieve a DKIM key from the DNS, the result provides specific properti
 
 ## Domain-based Message Authentication, Reporting and Conformance (DMARC)
 
-DMARC is a protocol that builds upon SPF and DKIM to provide a clear set of instructions for email receivers on how to handle emails that don't pass authentication checks. It specifically focuses on the domain name in the "From" header of the email.
+[DMARC](../terms/dmarc) is a protocol that builds upon SPF and DKIM to provide a clear set of instructions for email receivers on how to handle emails that don't pass authentication checks. It specifically focuses on the domain name in the "From" header of the email.
 
 The core component of a DMARC policy is the `p` tag, which defines the action to be taken when an email fails both SPF and DKIM checks:
 
