@@ -63,6 +63,57 @@ DKIM is a vital protocol that allows recipients to verify that an email was sent
 
 When sending out emails on behalf of the customer, sign the emails with DKIM using the customer's domain name and the configured selector `my-saas`.
 
+### Setting Up VERP Domain for Bounce Handling
+
+When integrating email sending into your SaaS platform, handling bounced emails efficiently is crucial. VERP (Variable Envelope Return Path) offers a sophisticated method to manage these bounces. Here's a step-by-step guide to setting up a VERP domain:
+
+#### 1. **MX Server Configuration**:
+
+To utilize VERP addresses, you'll need an MX server dedicated to processing bounce emails. This server should:
+
+- Operate on port 25.
+- Listen for incoming SMTP connections.
+- On receiving an email, check if the recipient's address aligns with a VERP address.
+- If it matches, determine the original email to which the bounce was sent in response.
+- Ascertain if the response is an out-of-office reply or an actual bounce email.
+
+:::tip
+For those familiar with Node.js, the [SMTP-Server](https://nodemailer.com/extras/smtp-server/) module can simplify the creation of SMTP servers.
+:::
+
+#### 2. **VERP Domain Configuration**:
+
+For VERP to function, users need to set up a CNAME record for a subdomain, pointing to your VERP domain. This delegation allows your SaaS to manage the subdomain. For instance, if your VERP domain is `bounces.example.com` and the user's domain is `customer.com`, the user should set a CNAME for `my-service.customer.com` pointing to `bounces.example.com`. Ensure that your VERP domain has an MX DNS record, as this is where bounce replies are directed.
+
+```
+$ dig my-service.customer.com
+;; ANSWER SECTION:
+my-service.customer.com.	180	IN	CNAME	bounces.example.com.
+bounces.example.com.	60	IN	A	1.2.3.4
+
+$ dig mx my-service.customer.com
+;; ANSWER SECTION:
+my-service.customer.com.	180	IN	CNAME	bounces.example.com.
+bounces.example.com.	300	IN	MX	10 customer-mail.example.com.
+```
+
+#### 3. **Email Sending with VERP**:
+
+When dispatching emails on behalf of users:
+
+- Generate a unique identifier for each email.
+- Use the customer's VERP domain as the domain name.
+- For instance, using UUID values, the sender address could be `9b689fbe-3d95-45f1-9a6c-8817d1e80bde@my-service.customer.com`.
+- Store this UUID in your database alongside the email's details.
+
+#### 4. **Handling Bounces**:
+
+If an email bounces:
+
+- The managing MTA server sends a bounce email to the sender address.
+- This resolves the MX of `my-service.customer.com` to `customer-mail.example.com`, where your VERP handling SMTP server operates.
+- Your VERP handler checks the database for the UUID. If found, your service can identify the specific user and email that bounced.
+
 ## Examples
 
 The following screenshots illustrate the process of configuring a provider's DNS settings from the user's perspective. If you're integrating email sending into your SaaS platform, guiding your users through a similar setup will be essential for smooth email operations.
