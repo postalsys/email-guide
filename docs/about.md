@@ -10,6 +10,8 @@ Over the years, I've been approached by numerous SaaS service and startup builde
 
 Recognizing the recurring challenges and the consistent solutions, I felt compelled to create this guide. Here, on this website, I've distilled my knowledge and experience to present a comprehensive overview of the various email sending options available. Whether you're just starting out or looking to refine your approach, I hope this guide proves invaluable in your email integration journey.
 
+For inquiries or further information, please reach out to me at <a href="mailto:andris@postalsys.com">andris@postalsys.com</a>.
+
 <div className="custom-image avatar">
     <img src="/img/andris.jpg" alt="Andris Reinman" />
 </div>
