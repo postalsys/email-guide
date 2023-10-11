@@ -29,7 +29,7 @@ It's implemented using a DNS TXT record, identifiable by the `v=spf1` prefix.
 
 For instance, the SPF policy for the domain [emailengine.app](https://emailengine.app) is:
 
-```
+```bash
 $ dig +short txt emailengine.app
 "v=spf1 mx a include:_spf.google.com include:servers.mcsv.net ~all"
 ```
@@ -90,7 +90,7 @@ Unlike SPF, there isn't a one-size-fits-all DKIM policy for a domain. Instead, m
 
 For instance, to retrieve the DKIM key for the domain `emailengine.app` with the selector "google", the following command can be used:
 
-```
+```bash
 $ dig +short txt google._domainkey.emailengine.app
 "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAO...
 ```
@@ -131,7 +131,7 @@ By implementing DMARC, domain owners can protect their domain from unauthorized 
 
 When you retrieve a DMARC record from the DNS, it provides specific properties that detail the domain's DMARC configuration. Using the example for the domain `emailengine.app`:
 
-```
+```bash
 $ dig +short txt _dmarc.emailengine.app
 "v=DMARC1; p=none; pct=100; rua=mailto:re+s6qz7txzgeq@dmarc.postmarkapp.com; sp=none; aspf=r;"
 ```

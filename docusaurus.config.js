@@ -112,25 +112,29 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Marketing",
-                to: "/docs/marketing",
+                label: "About",
+                to: "/docs/about",
+              },
+              {
+                label: "Glossary",
+                to: "/docs/glossary",
               },
             ],
           },
           {
-            title: "Community",
+            title: "Useful software",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "EmailEngine",
+                href: "https://emailengine.app/",
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                label: "Nodemailer",
+                href: "https://nodemailer.com/",
               },
               {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                label: "SMTP-Server",
+                href: "https://nodemailer.com/extras/smtp-server/",
               },
             ],
           },
@@ -141,10 +145,14 @@ const config = {
                 label: "GitHub",
                 href: "https://github.com/postalsys/email-guide",
               },
+              {
+                label: "Postal Systems",
+                href: "https://postalsys.com/",
+              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Postal Systems OÜ.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Postal Systems OÜ. Powered by <a href="https://emailengine.app" class="footer__link-item">EmailEngine</a>.`,
       },
       prism: {
         theme: lightCodeTheme,

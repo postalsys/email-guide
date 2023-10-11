@@ -44,7 +44,7 @@ DKIM is a vital protocol that allows recipients to verify that an email was sent
 
 1. **Setup DKIM Key:** Begin by setting up a DKIM key within your email infrastructure. This will be a TXT record. While traditionally, the `_domainkey` subdomain is used, you can choose any subdomain. In our example, we'll use `customers-dkim.example.com` for the shared public key.
 
-   ```
+   ```bash
    $ dig txt dkim.outfunnel.com
    ;; ANSWER SECTION:
    customers-dkim.example.com.	217	IN	TXT	"v=DKIM1; k=rsa; p=MIIBIjANBgkqhki..."
@@ -54,7 +54,7 @@ DKIM is a vital protocol that allows recipients to verify that an email was sent
 
    When you query the DKIM key for the customer's domain using your selector, you should retrieve your public DKIM key.
 
-   ```
+   ```bash
    $ dig txt my-saas._domainkey.customer.com
    ;; ANSWER SECTION:
    my-saas._domainkey.customer.com. 300 IN	CNAME	customers-dkim.example.com.
@@ -85,7 +85,7 @@ For those familiar with Node.js, the [SMTP-Server](https://nodemailer.com/extras
 
 For VERP to function, users need to set up a CNAME record for a subdomain, pointing to your VERP domain. This delegation allows your SaaS to manage the subdomain. For instance, if your VERP domain is `bounces.example.com` and the user's domain is `customer.com`, the user should set a CNAME for `my-service.customer.com` pointing to `bounces.example.com`. Ensure that your VERP domain has an MX DNS record, as this is where bounce replies are directed.
 
-```
+```bash
 $ dig my-service.customer.com
 ;; ANSWER SECTION:
 my-service.customer.com.	180	IN	CNAME	bounces.example.com.
