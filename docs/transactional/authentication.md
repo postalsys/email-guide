@@ -3,6 +3,8 @@ sidebar_position: 5
 sidebar_label: Email Authentication
 ---
 
+import EnvelopeSvg from '/img/envelope.svg';
+
 # Email Authentication
 
 To ensure emails from your platform are delivered to the recipient's inbox and not classified as junk or rejected, it's essential to authenticate them correctly.
@@ -45,6 +47,26 @@ This indicates:
 - When using email service providers, SPF might not be directly applicable. This is because SPF checks the SMTP envelope, not the "From:" address in the email. Many ESPs send emails from their domains using VERP addresses to track bounces.
 - SPF works in conjunction with DKIM. If an email fails SPF validation, it can still be accepted if it has a valid DKIM signature.
 - Email forwarding can cause SPF checks to fail, so many mail hosts treat even strict SPF failures leniently. This makes SPF more valuable as a positive indicator than a negative one.
+
+:::info
+
+When an email is sent, it carries two sets of addressing information: the envelope and the header.
+
+1. **Envelope:** This is like the physical envelope you'd use to send a traditional letter. It contains the essential routing information, determining where the email originates from and where it's headed. In the event the email fails to be delivered, any bounce-back notifications are directed to the address mentioned in the envelope, not the header.
+
+2. **Header:** This is what the recipient sees when they open the email. It displays the sender's and recipient's email addresses. However, it's essential to note that even if the header shows `<sender@example.com>` as the sender, any undeliverable email notifications (or bounces) will be sent to the address in the envelope, not the header.
+
+<div className="text--center custom-image-lg">
+    <EnvelopeSvg/>
+</div>
+
+**Why is this distinction important for SaaS web service owners?**
+
+Email service providers often employ a unique strategy to track email bounces effectively. They set a random identifier linked with the email as the user part of the email address, using their domain (the so-called VERP-address). This means if an email bounces, the provider can use this unique identifier to pinpoint which specific email wasn't delivered. This system ensures efficient tracking and better email deliverability insights for businesses integrating email sending into their platforms.
+
+This is why SPF might not be very relevant for SaaS services – SPF is checked against the sender's address on the envelope, and it is not theirs.
+
+:::
 
 ## DomainKeys Identified Mail (DKIM)
 

@@ -8,7 +8,7 @@ sidebar_label: Sending examples
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Below, we'll walk you through examples of sending emails using the specified configuration:
+Below, I'll walk you through examples of sending emails using the specified configuration:
 
 - **Hostname**: smtp.example.com
 - **Port**: 465
@@ -19,7 +19,7 @@ Below, we'll walk you through examples of sending emails using the specified con
 <Tabs>
   <TabItem value="phpmailer" label="PHPMailer" default>
 
-In this example, we'll utilize [PHPMailer](https://github.com/PHPMailer/PHPMailer) to dispatch a transactional welcome email.
+In this example, I'll utilize [PHPMailer](https://github.com/PHPMailer/PHPMailer) to dispatch a transactional welcome email.
 
 ```php
 <?php
@@ -54,7 +54,7 @@ It's important to note that the `SMTPSecure` option is set to `ssl`. We've discu
 
   <TabItem value="nodemailer" label="NodeMailer">
 
-In this example, we'll utilize [NodeMailer](https://nodemailer.com) to dispatch a transactional welcome email.
+In this example, I'll utilize [NodeMailer](https://nodemailer.com) to dispatch a transactional welcome email.
 
 ```js
 const nodemailer = require("nodemailer");

@@ -34,6 +34,11 @@
   max-height: 12rem;
 }
 
+.custom-image-lg svg,
+.custom-image-lg img {
+  max-height: 26rem;
+}
+
 .avatar img {
   border-radius: 25%;
   margin: 0 auto;
