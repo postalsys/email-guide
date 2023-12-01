@@ -5,26 +5,26 @@ sidebar_label: "3rd-Party DNS Setup"
 
 # "3rd-Party DNS Setup" Email Sending Approach
 
-This approach allows your SaaS service to send emails using the user's domain name, enhancing authenticity.
+This approach allows your SaaS service to send emails with the user's domain name, making the emails look more authentic.
 
 ## How It Works:
 
-1. **Configuration Sharing:** Your SaaS service provides users with specific DNS configuration values, including [SPF](../terms/spf) and [DKIM](../terms/dkim) settings.
-2. **User Action:** Users then update their domain's DNS settings with these provided values.
-3. **Email Dispatch:** With the updated DNS settings, your SaaS platform can send emails using the user's domain name in the sender address.
+1. **Configuration Sharing:** Your SaaS service shares DNS configuration details with users. This includes settings for [SPF](../terms/spf) and [DKIM](../terms/dkim).
+2. **User Action:** Users then update their domain's DNS settings with these values.
+3. **Email Sending:** With these DNS updates, your SaaS can send emails using the user's domain in the sender address. As the user configures their DNS with your DKIM and SPF values, emails sent by your server will look authentic to the recipients.
 
 ## Pros:
 
 - **Authenticity:** Emails appear genuine to recipients and successfully pass SPF/DKIM validation checks.
-- **Simplified Infrastructure:** The setup isn't overly complicated. You can utilize a shared email sending infrastructure, merely adjusting the sender name for each email. There's no need for intricate software or individualized services for each user.
-- **Vendor Flexibility:** This approach often aligns with existing email sending vendors used for transactional emails.
+- **Simplified Infrastructure:** The setup is straightforward. You use a single email-sending system for all your customers, only changing the sender name and address for each email. There's no need for complex software or unique services for individual users.
+- **Vendor Flexibility:** This method often works well with existing email-sending services used for transactional emails.
 
 ## Cons:
 
-- **DNS Complexity:** Updating DNS settings can be perplexing, especially for those unfamiliar with the process.
-- **Admin Restrictions:** Only individuals with domain admin rights can modify the necessary records.
-- **Knowledge Gap:** Smaller companies might not be aware of their DNS provider or how to adjust the settings.
-- **Lack of Standardization:** DNS setup forms vary across providers. For instance, Cloudflare and AWS Route53 have different expectations for TXT records, making tutorial creation challenging.
+- **DNS Complexity:** Changing DNS settings can be confusing for those not familiar with it.
+- **Admin Access Needed:** Only people with domain admin rights can change the necessary records.
+- **Knowledge Gap:** Smaller businesses may not know their DNS provider or how to change settings.
+- **Different Setups:** DNS setup steps vary across providers, like Cloudflare and AWS Route53, which have different expectations for TXT records, making tutorial creation challenging.
 
 ## Required DNS Fields for Email Configuration
 
@@ -32,23 +32,37 @@ When integrating email sending into your SaaS platform, it's essential to unders
 
 ### SPF (Sender Policy Framework)
 
-While SPF is a standard protocol used to prevent email spoofing, it might be advisable to skip its configuration for the following reasons:
+SPF helps prevent email spoofing, but setting it up can be complex:
 
 - **Complexity:** SPF setup can be intricate. Unlike DKIM, where you typically add a new record, SPF requires modifying an existing record. This can be challenging, especially for those unfamiliar with DNS configurations.
 - **Potential for Errors:** Small mistakes, such as adding multiple whitespaces or misplacing identifiers, can lead to SPF setup errors. For an average small business owner, incorrect SPF configurations can often result in email delivery issues.
-- **Limited Value with VERP:** When using [VERP](../terms/verp)-based sending, the value of SPF diminishes. This is because VERP addresses use a different sending domain.
+- **Less Useful with VERP:** When using [VERP](../terms/verp)-based sending, SPF's importance is reduced because VERP uses a different sending domain.
 
 ### DKIM (DomainKeys Identified Mail)
 
-DKIM is a vital protocol that allows recipients to verify that an email was sent and authorized by the owner of the sending domain. Here's how to set it up:
+DKIM lets recipients check if an email is really from the domain's owner. Here's how to set it up:
 
-1. **Setup DKIM Key:** Begin by setting up a DKIM key within your email infrastructure. This will be a TXT record. While traditionally, the `_domainkey` subdomain is used, you can choose any subdomain. In our example, we'll use `customers-dkim.example.com` for the shared public key.
+1. **Setup DKIM Key:** Begin by setting up a DKIM key within your email infrastructure. This will be a TXT record. While traditionally, the `_domainkey` subdomain is used, you can choose any subdomain because we will not be using this record directly but as a CNAME target. In our example, we'll use `customers-dkim.example.com` for the shared public key.
 
    ```bash
-   $ dig txt dkim.outfunnel.com
+   $ dig txt customers-dkim.example.com
    ;; ANSWER SECTION:
-   customers-dkim.example.com.	217	IN	TXT	"v=DKIM1; k=rsa; p=MIIBIjANBgkqhki..."
+   customers-dkim.example.com.  217 IN  TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhki..."
    ```
+
+:::info
+
+This tutorial assumes you have the DKIM keys already generated and configured in your sending infrastructure. If you do not have DKIM keys, you can generate these with the following commands:
+
+```bash
+$ openssl genrsa -out dkim_private.pem 2048
+$ echo -n 'v=DKIM1; p=' > dkim_dns.txt
+$ openssl rsa -in dkim_private.pem -pubout -outform der 2>/dev/null | openssl base64 -A >> dkim_dns.txt
+```
+
+The resulting file `dkim_private.pem` contains the private key needed for signing emails, and `dkim_dns.txt` contains the DNS TXT record value.
+
+:::
 
 2. **CNAME Record for DKIM Selector:** Instruct your users to set up a CNAME record for the DKIM selector. The selector should be consistent and unlikely to change in the future. In our example, we use `my-saas` as the selector. So, for a domain like `customer.com`, the CNAME would be `my-saas._domainkey.customer.com`, pointing to your shared DKIM record `customers-dkim.example.com`.
 
@@ -57,8 +71,8 @@ DKIM is a vital protocol that allows recipients to verify that an email was sent
    ```bash
    $ dig txt my-saas._domainkey.customer.com
    ;; ANSWER SECTION:
-   my-saas._domainkey.customer.com. 300 IN	CNAME	customers-dkim.example.com.
-   customers-dkim.example.com.	217	IN	TXT	"v=DKIM1; k=rsa; p=MIIBIjANBgkqhki..."
+   my-saas._domainkey.customer.com. 300 IN  CNAME   customers-dkim.example.com.
+   customers-dkim.example.com.  217 IN  TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhki..."
    ```
 
 When sending out emails on behalf of the customer, sign the emails with DKIM using the customer's domain name and the configured selector `my-saas`.
@@ -88,13 +102,13 @@ For VERP to function, users need to set up a CNAME record for a subdomain, point
 ```bash
 $ dig my-service.customer.com
 ;; ANSWER SECTION:
-my-service.customer.com.	180	IN	CNAME	bounces.example.com.
-bounces.example.com.	60	IN	A	1.2.3.4
+my-service.customer.com.    180 IN  CNAME   bounces.example.com.
+bounces.example.com.    60  IN  A   1.2.3.4
 
 $ dig mx my-service.customer.com
 ;; ANSWER SECTION:
-my-service.customer.com.	180	IN	CNAME	bounces.example.com.
-bounces.example.com.	300	IN	MX	10 customer-mail.example.com.
+my-service.customer.com.    180 IN  CNAME   bounces.example.com.
+bounces.example.com.    300 IN  MX  10 customer-mail.example.com.
 ```
 
 #### 3. **Email Sending with VERP**:

@@ -49,6 +49,7 @@ This indicates:
 - When using email service providers, SPF might not be directly applicable. This is because SPF checks the SMTP envelope, not the "From:" address in the email. Many ESPs send emails from their domains using VERP addresses to track bounces.
 - SPF works in conjunction with [DKIM](../terms/dkim). If an email fails SPF validation, it can still be accepted if it has a valid DKIM signature.
 - Email forwarding can cause SPF checks to fail, so many mail hosts treat even strict SPF failures leniently. This makes SPF more valuable as a positive indicator than a negative one.
+- In any case, follow the advice of your ESP regarding setting up SPF
 
 :::info
 
